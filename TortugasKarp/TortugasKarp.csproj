@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9BA93153-194F-4499-87DE-4C08A5E51BA1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TortugasKarp</RootNamespace>
+    <AssemblyName>TortugasKarp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ClassHelper\AppData.cs" />
+    <Compile Include="ClassHelper\Busket.cs" />
+    <Compile Include="ClassHelper\CountDiscount.cs" />
+    <Compile Include="EF\Book.cs">
+      <DependentUpon>Model401.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Category.cs">
+      <DependentUpon>Model401.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Dish.cs">
+      <DependentUpon>Model401.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Employee.cs">
+      <DependentUpon>Model401.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Ingridient.cs">
+      <DependentUpon>Model401.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model401.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model401.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model401.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model401.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model401.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model401.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ModelHome.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelHome.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ModelHome.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelHome.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ModelHome.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelHome.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Order.cs">
+      <DependentUpon>Model401.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\OrderDish.cs">
+      <DependentUpon>Model401.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Role.cs">
+      <DependentUpon>Model401.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sysdiagrams.cs">
+      <DependentUpon>Model401.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Table.cs">
+      <DependentUpon>Model401.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MenuWindow.xaml.cs">
+      <DependentUpon>MenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PayWindow.xaml.cs">
+      <DependentUpon>PayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ProductWindow.xaml.cs">
+      <DependentUpon>ProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Pages\OrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Windows\MenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="EF\ModelHome.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelHome.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="EF\Model401.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model401.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EF\Model401.edmx.diagram">
+      <DependentUpon>Model401.edmx</DependentUpon>
+    </None>
+    <None Include="EF\ModelHome.edmx.diagram">
+      <DependentUpon>ModelHome.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EF\Model401.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model401.edmx</DependentUpon>
+      <LastGenOutput>Model401.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\Model401.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model401.edmx</DependentUpon>
+      <LastGenOutput>Model401.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\ModelHome.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelHome.edmx</DependentUpon>
+      <LastGenOutput>ModelHome.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\ModelHome.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelHome.edmx</DependentUpon>
+      <LastGenOutput>ModelHome.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Res\befstroganov.png" />
+    <Resource Include="Res\carpacho.png" />
+    <Resource Include="Res\casserole.png" />
+    <Resource Include="Res\DB1.PNG" />
+    <Resource Include="Res\DB2.PNG" />
+    <Resource Include="Res\fish.png" />
+    <Resource Include="Res\fokacha.png" />
+    <Resource Include="Res\garage.jpg" />
+    <Resource Include="Res\guakamole.png" />
+    <Resource Include="Res\hot dog.png" />
+    <Resource Include="Res\juice.png" />
+    <Resource Include="Res\julien.png" />
+    <Resource Include="Res\julienjust.png" />
+    <Resource Include="Res\maffin.png" />
+    <Resource Include="Res\martini.png" />
+    <Resource Include="Res\napoleon.png" />
+    <Resource Include="Res\opera.png" />
+    <Resource Include="Res\potatoesLemon.png" />
+    <Resource Include="Res\potatoesSosige.png" />
+    <Resource Include="Res\profitroli.png" />
+    <Resource Include="Res\roast.png" />
+    <Resource Include="Res\salmon.png" />
+    <Resource Include="Res\schrimps.png" />
+    <Resource Include="Res\shampignons.png" />
+    <Resource Include="Res\sharlotka.jpg" />
+    <Resource Include="Res\Structure.PNG" />
+    <Resource Include="Res\tekila.png" />
+    <Resource Include="Res\UseCase.PNG" />
+    <Resource Include="Res\vine.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

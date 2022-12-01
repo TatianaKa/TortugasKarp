@@ -1,0 +1,147 @@
+﻿<Page x:Class="TortugasKarp.Pages.OrderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TortugasKarp.Pages"
+      mc:Ignorable="d" 
+     d:DesignHeight="833" d:DesignWidth="785"
+      Title="OrderPage">
+
+    <Grid Background="#D5921A" MouseLeave="Grid_MouseLeave" >
+        <ListView x:Name="LvOrder" 
+                  Height="583"
+                  Margin="0 0 0 90"
+                  Grid.Row="1" 
+                  Background="#D5921A"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  d:ItemsSource="{d:SampleData ItemCount=5}"
+                >
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate >
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid Height="60" Width="785"  Background="#D5921A" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Title}" 
+                                   TextWrapping="Wrap"
+                                   
+                       FontFamily="Garamond" 
+                       FontSize="30"
+                         Margin="10 0 0 0"
+                         Foreground="Black"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"/>
+                        <WrapPanel    Grid.Column="1">
+                            <TextBlock Text="{Binding Weight}" 
+                       FontFamily="Garamond" 
+                       FontSize="30"
+                       Foreground="Black"
+                       Margin="10 10 0 0"/>
+                            <TextBlock Text="гр." 
+                       FontFamily="Garamond" 
+                       FontSize="30"
+                   Margin="10 10 0 0"
+                   Grid.Column="1"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"/>
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Column="2">
+                            <TextBlock Text="-"
+                       Margin="10 10 0 10"
+                               MouseDown="txbMinus_MouseDown"  
+                       x:Name="txbMinus"
+                     
+                        FontFamily="Garamond" 
+                        Foreground="Black"
+                       FontSize="30"/>
+                            <TextBlock Text="{Binding Qty}" 
+                   Grid.Column="2"
+                       FontFamily="Garamond" 
+                   Foreground="Black"
+                       FontSize="30"
+                   Margin="5 10 0 0"
+                   VerticalAlignment="Center"/>
+                            <TextBlock Text="+"
+                       Margin="10 10 5 0"
+                                       x:Name="txbPlus"
+                                       MouseDown="txbPlus_MouseDown"
+                                       VerticalAlignment="Center"
+                        FontFamily="Garamond" 
+                        Foreground="Black"
+                       FontSize="30"/>
+                            <TextBlock Text="{Binding Count}" 
+                   Grid.Column="2"
+                                       
+                   Foreground="Black"
+                       FontFamily="Garamond" 
+                       FontSize="30"
+                   Margin="10 10 0 0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"/>
+                            <TextBlock Text="X" 
+                                       x:Name="txbDelete"
+                                      MouseDown="txbDelete_MouseDown"
+                   Grid.Column="2"
+                   Foreground="Black"
+                       FontFamily="Garamond" 
+                       FontSize="30"
+                   Margin="10 10 0 0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"/>
+                        </WrapPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <WrapPanel Width="400"
+                   Height="50"
+                   Orientation="Horizontal"
+                   Margin="0 570 0 0">
+            <TextBlock Text="Итого:"
+                       FontFamily="Garamond" 
+                   FontSize="36" 
+                       Margin="50 5 0 0"/>
+            <TextBlock 
+                       FontFamily="Garamond" 
+                   FontSize="36"                  
+                   x:Name="txbFinishCost"
+                Margin="10 0 0 0"/>
+        </WrapPanel>
+
+        <TextBlock Text="Заказ" 
+                   FontFamily="Garamond" 
+                   FontSize="36" 
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   Margin="0 10 0 0"/>
+        <Line X1="40" X2="740"
+              Y1="70" Y2="70"
+              StrokeThickness="2"
+              Stroke="Black"/>
+
+        <Button Content="Оплатить" 
+                Width="270"
+                x:Name="btnPay"
+                Click="btnPay_Click"
+                Background="#443020"
+                FontFamily="Garamond" 
+                HorizontalAlignment="Center"
+                
+                VerticalAlignment="Bottom"
+                Margin="0 0 0 30"
+                FontSize="36"
+                Height="63"/>
+    </Grid>
+</Page>
