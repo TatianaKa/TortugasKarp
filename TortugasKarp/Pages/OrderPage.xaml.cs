@@ -53,7 +53,7 @@ namespace TortugasKarp.Pages
 
         private void Grid_MouseLeave(object sender, MouseEventArgs e)
         {
-            Content = null;
+            //Content = null;
         }
 
         private void txbDelete_MouseDown(object sender, MouseButtonEventArgs e)

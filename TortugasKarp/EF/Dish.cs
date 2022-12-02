@@ -26,10 +26,11 @@ namespace TortugasKarp.EF
         public decimal Cost { get; set; }
         public int Weight { get; set; }
         public string Description { get; set; }
+        public int  Qty { get; set; }
+        public decimal Count { get; set; }
         public Nullable<int> CategoryId { get; set; }
         public string ImagePath { get; set; }
-        public int Qty { get; set; }
-        public decimal Count { get; set; }
+    
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDish> OrderDish { get; set; }

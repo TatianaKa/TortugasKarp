@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище TortugassKarpenkoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище TortugassKarpenkoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="Id" />
@@ -259,11 +259,54 @@
             <End Role="OrderDish" EntitySet="OrderDish" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TortugassKarpenkoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Book" EntityType="TortugassKarpenkoModel.Book" />
+          <EntitySet Name="Category" EntityType="TortugassKarpenkoModel.Category" />
+          <EntitySet Name="Dish" EntityType="TortugassKarpenkoModel.Dish" />
+          <EntitySet Name="Employee" EntityType="TortugassKarpenkoModel.Employee" />
+          <EntitySet Name="Ingridient" EntityType="TortugassKarpenkoModel.Ingridient" />
+          <EntitySet Name="Order" EntityType="TortugassKarpenkoModel.Order" />
+          <EntitySet Name="OrderDish" EntityType="TortugassKarpenkoModel.OrderDish" />
+          <EntitySet Name="Role" EntityType="TortugassKarpenkoModel.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="TortugassKarpenkoModel.sysdiagrams" />
+          <EntitySet Name="Table" EntityType="TortugassKarpenkoModel.Table" />
+          <AssociationSet Name="FK_Booking_Table" Association="TortugassKarpenkoModel.FK_Booking_Table">
+            <End Role="Table" EntitySet="Table" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dish_Category" Association="TortugassKarpenkoModel.FK_Dish_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Dish" EntitySet="Dish" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDish_Dish" Association="TortugassKarpenkoModel.FK_OrderDish_Dish">
+            <End Role="Dish" EntitySet="Dish" />
+            <End Role="OrderDish" EntitySet="OrderDish" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Role" Association="TortugassKarpenkoModel.FK_Employee_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDish_Employee" Association="TortugassKarpenkoModel.FK_OrderDish_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="OrderDish" EntitySet="OrderDish" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Table" Association="TortugassKarpenkoModel.FK_Order_Table">
+            <End Role="Table" EntitySet="Table" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDish_Order" Association="TortugassKarpenkoModel.FK_OrderDish_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDish" EntitySet="OrderDish" />
+          </AssociationSet>
+          <AssociationSet Name="IngridientDish" Association="TortugassKarpenkoModel.IngridientDish">
+            <End Role="Dish" EntitySet="Dish" />
+            <End Role="Ingridient" EntitySet="Ingridient" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="Id" />
@@ -271,51 +314,51 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TableId" Type="Int32" Nullable="false" />
           <Property Name="DateBook" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Table" Relationship="Self.FK_Booking_Table" FromRole="Book" ToRole="Table" />
+          <NavigationProperty Name="Table" Relationship="TortugassKarpenkoModel.FK_Booking_Table" FromRole="Book" ToRole="Table" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameCategory" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Dish" Relationship="Self.FK_Dish_Category" FromRole="Category" ToRole="Dish" />
+          <Property Name="NameCategory" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dish" Relationship="TortugassKarpenkoModel.FK_Dish_Category" FromRole="Category" ToRole="Dish" />
         </EntityType>
         <EntityType Name="Dish">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Cost" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
           <Property Name="Weight" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="CategoryId" Type="Int32" />
           <Property Name="ImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Dish_Category" FromRole="Dish" ToRole="Category" />
-          <NavigationProperty Name="OrderDish" Relationship="Self.FK_OrderDish_Dish" FromRole="Dish" ToRole="OrderDish" />
-          <NavigationProperty Name="Ingridient" Relationship="Self.IngridientDish" FromRole="Dish" ToRole="Ingridient" />
+          <NavigationProperty Name="Category" Relationship="TortugassKarpenkoModel.FK_Dish_Category" FromRole="Dish" ToRole="Category" />
+          <NavigationProperty Name="OrderDish" Relationship="TortugassKarpenkoModel.FK_OrderDish_Dish" FromRole="Dish" ToRole="OrderDish" />
+          <NavigationProperty Name="Ingridient" Relationship="TortugassKarpenkoModel.IngridientDish" FromRole="Dish" ToRole="Ingridient" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Salary" Type="Int32" Nullable="false" />
           <Property Name="RoleId" Type="Int32" />
-          <Property Name="Phone" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
-          <NavigationProperty Name="OrderDish" Relationship="Self.FK_OrderDish_Employee" FromRole="Employee" ToRole="OrderDish" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="14" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Role" Relationship="TortugassKarpenkoModel.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
+          <NavigationProperty Name="OrderDish" Relationship="TortugassKarpenkoModel.FK_OrderDish_Employee" FromRole="Employee" ToRole="OrderDish" />
         </EntityType>
         <EntityType Name="Ingridient">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Dish" Relationship="Self.IngridientDish" FromRole="Ingridient" ToRole="Dish" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dish" Relationship="TortugassKarpenkoModel.IngridientDish" FromRole="Ingridient" ToRole="Dish" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -324,9 +367,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TableId" Type="Int32" Nullable="false" />
           <Property Name="DateOrder" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FinishCost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Table" Relationship="Self.FK_Order_Table" FromRole="Order" ToRole="Table" />
-          <NavigationProperty Name="OrderDish" Relationship="Self.FK_OrderDish_Order" FromRole="Order" ToRole="OrderDish" />
+          <Property Name="FinishCost" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Table" Relationship="TortugassKarpenkoModel.FK_Order_Table" FromRole="Order" ToRole="Table" />
+          <NavigationProperty Name="OrderDish" Relationship="TortugassKarpenkoModel.FK_OrderDish_Order" FromRole="Order" ToRole="OrderDish" />
         </EntityType>
         <EntityType Name="OrderDish">
           <Key>
@@ -338,23 +381,23 @@
           <Property Name="Qty" Type="Int32" Nullable="false" />
           <Property Name="WaiterId" Type="Int32" />
           <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="Dish" Relationship="Self.FK_OrderDish_Dish" FromRole="OrderDish" ToRole="Dish" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_OrderDish_Employee" FromRole="OrderDish" ToRole="Employee" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDish_Order" FromRole="OrderDish" ToRole="Order" />
+          <NavigationProperty Name="Dish" Relationship="TortugassKarpenkoModel.FK_OrderDish_Dish" FromRole="OrderDish" ToRole="Dish" />
+          <NavigationProperty Name="Employee" Relationship="TortugassKarpenkoModel.FK_OrderDish_Employee" FromRole="OrderDish" ToRole="Employee" />
+          <NavigationProperty Name="Order" Relationship="TortugassKarpenkoModel.FK_OrderDish_Order" FromRole="OrderDish" ToRole="Order" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="NameRole" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
+          <Property Name="NameRole" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="TortugassKarpenkoModel.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -366,12 +409,12 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="QtySit" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Book" Relationship="Self.FK_Booking_Table" FromRole="Table" ToRole="Book" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Table" FromRole="Table" ToRole="Order" />
+          <NavigationProperty Name="Book" Relationship="TortugassKarpenkoModel.FK_Booking_Table" FromRole="Table" ToRole="Book" />
+          <NavigationProperty Name="Order" Relationship="TortugassKarpenkoModel.FK_Order_Table" FromRole="Table" ToRole="Order" />
         </EntityType>
         <Association Name="FK_Booking_Table">
-          <End Role="Table" Type="Self.Table" Multiplicity="1" />
-          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <End Type="TortugassKarpenkoModel.Table" Role="Table" Multiplicity="1" />
+          <End Type="TortugassKarpenkoModel.Book" Role="Book" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Table">
               <PropertyRef Name="Id" />
@@ -382,8 +425,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Dish_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
+          <End Type="TortugassKarpenkoModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="TortugassKarpenkoModel.Dish" Role="Dish" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="Id" />
@@ -394,8 +437,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDish_Dish">
-          <End Role="Dish" Type="Self.Dish" Multiplicity="1" />
-          <End Role="OrderDish" Type="Self.OrderDish" Multiplicity="*" />
+          <End Type="TortugassKarpenkoModel.Dish" Role="Dish" Multiplicity="1" />
+          <End Type="TortugassKarpenkoModel.OrderDish" Role="OrderDish" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dish">
               <PropertyRef Name="Id" />
@@ -406,8 +449,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <End Type="TortugassKarpenkoModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="TortugassKarpenkoModel.Employee" Role="Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="Id" />
@@ -418,8 +461,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDish_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-          <End Role="OrderDish" Type="Self.OrderDish" Multiplicity="*" />
+          <End Type="TortugassKarpenkoModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="TortugassKarpenkoModel.OrderDish" Role="OrderDish" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Id" />
@@ -430,8 +473,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Table">
-          <End Role="Table" Type="Self.Table" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Type="TortugassKarpenkoModel.Table" Role="Table" Multiplicity="1" />
+          <End Type="TortugassKarpenkoModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Table">
               <PropertyRef Name="Id" />
@@ -442,8 +485,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDish_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="OrderDish" Type="Self.OrderDish" Multiplicity="*" />
+          <End Type="TortugassKarpenkoModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="TortugassKarpenkoModel.OrderDish" Role="OrderDish" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
               <PropertyRef Name="Id" />
@@ -454,53 +497,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="IngridientDish">
-          <End Role="Dish" Type="Self.Dish" Multiplicity="*" />
-          <End Role="Ingridient" Type="Self.Ingridient" Multiplicity="*" />
+          <End Type="TortugassKarpenkoModel.Dish" Role="Dish" Multiplicity="*" />
+          <End Type="TortugassKarpenkoModel.Ingridient" Role="Ingridient" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Book" EntityType="Self.Book" />
-          <EntitySet Name="Category" EntityType="Self.Category" />
-          <EntitySet Name="Dish" EntityType="Self.Dish" />
-          <EntitySet Name="Employee" EntityType="Self.Employee" />
-          <EntitySet Name="Ingridient" EntityType="Self.Ingridient" />
-          <EntitySet Name="Order" EntityType="Self.Order" />
-          <EntitySet Name="OrderDish" EntityType="Self.OrderDish" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Table" EntityType="Self.Table" />
-          <AssociationSet Name="FK_Booking_Table" Association="Self.FK_Booking_Table">
-            <End Role="Table" EntitySet="Table" />
-            <End Role="Book" EntitySet="Book" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Dish_Category" Association="Self.FK_Dish_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Dish" EntitySet="Dish" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderDish_Dish" Association="Self.FK_OrderDish_Dish">
-            <End Role="Dish" EntitySet="Dish" />
-            <End Role="OrderDish" EntitySet="OrderDish" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderDish_Employee" Association="Self.FK_OrderDish_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="OrderDish" EntitySet="OrderDish" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Table" Association="Self.FK_Order_Table">
-            <End Role="Table" EntitySet="Table" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderDish_Order" Association="Self.FK_OrderDish_Order">
-            <End Role="Order" EntitySet="Order" />
-            <End Role="OrderDish" EntitySet="OrderDish" />
-          </AssociationSet>
-          <AssociationSet Name="IngridientDish" Association="Self.IngridientDish">
-            <End Role="Dish" EntitySet="Dish" />
-            <End Role="Ingridient" EntitySet="Ingridient" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -510,108 +509,108 @@
           <EntitySetMapping Name="Book">
             <EntityTypeMapping TypeName="TortugassKarpenkoModel.Book">
               <MappingFragment StoreEntitySet="Book">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TableId" ColumnName="TableId" />
                 <ScalarProperty Name="DateBook" ColumnName="DateBook" />
+                <ScalarProperty Name="TableId" ColumnName="TableId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="TortugassKarpenkoModel.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NameCategory" ColumnName="NameCategory" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Dish">
             <EntityTypeMapping TypeName="TortugassKarpenkoModel.Dish">
               <MappingFragment StoreEntitySet="Dish">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employee">
             <EntityTypeMapping TypeName="TortugassKarpenkoModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ingridient">
             <EntityTypeMapping TypeName="TortugassKarpenkoModel.Ingridient">
               <MappingFragment StoreEntitySet="Ingridient">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="TortugassKarpenkoModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TableId" ColumnName="TableId" />
-                <ScalarProperty Name="DateOrder" ColumnName="DateOrder" />
                 <ScalarProperty Name="FinishCost" ColumnName="FinishCost" />
+                <ScalarProperty Name="DateOrder" ColumnName="DateOrder" />
+                <ScalarProperty Name="TableId" ColumnName="TableId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDish">
             <EntityTypeMapping TypeName="TortugassKarpenkoModel.OrderDish">
               <MappingFragment StoreEntitySet="OrderDish">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="DishId" ColumnName="DishId" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="WaiterId" ColumnName="WaiterId" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="WaiterId" ColumnName="WaiterId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="DishId" ColumnName="DishId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="TortugassKarpenkoModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="TortugassKarpenkoModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Table">
             <EntityTypeMapping TypeName="TortugassKarpenkoModel.Table">
               <MappingFragment StoreEntitySet="Table">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="QtySit" ColumnName="QtySit" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="IngridientDish" TypeName="TortugassKarpenkoModel.IngridientDish" StoreEntitySet="IngridientDish">
-            <EndProperty Name="Dish">
-              <ScalarProperty Name="Id" ColumnName="DishId" />
-            </EndProperty>
             <EndProperty Name="Ingridient">
               <ScalarProperty Name="Id" ColumnName="IngridientId" />
+            </EndProperty>
+            <EndProperty Name="Dish">
+              <ScalarProperty Name="Id" ColumnName="DishId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
